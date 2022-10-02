@@ -13,12 +13,8 @@ class SuperHeroes:
     def intelligence_heroes(self, get_file_list, hero1, hero2, hero3):
         intel_hero = {}
         for i in get_file_list:
-            if i['name'] == hero1:
-                intel_hero[hero1] = i['powerstats']['intelligence']
-            if i['name'] == hero2:
-                intel_hero[hero2] = i['powerstats']['intelligence']       
-            if i['name'] == hero3:
-                intel_hero[hero3] = i['powerstats']['intelligence']
+            if i['name'] in [hero1, hero2, hero3]:
+                intel_hero[i['name']] = i['powerstats']['intelligence']
         return f'Самый умный среди Ваших супергероев : {max(intel_hero)}'           
 
 
@@ -48,21 +44,30 @@ class YaUploader:
         if response.status_code == 201:
             return 'Файл добавлен!'
 
+def get_fike_hw3():
+    url = 'https://api.stackexchange.com/2.3/questions?fromdate=1664496000&todate=1664668800&order=desc&sort=activity&tagged=Python&site=stackoverflow'            
+    respons = requests.get(url)
+    return respons.json()
         
         
 
 
 
 if __name__ == '__main__':
+    #Задча 1
     super_man = SuperHeroes()
     result = super_man.get_file_list()
     r = super_man.intelligence_heroes(result, 'Hulk', 'Captain America', 'Thanos')
     print(r)
+    #Задача 2
     path_to_file = input('Введите полный путь до файла, который хотите загрузить на диск: ')
     token = input('Введите Ваш TOKEN: ')
     uploader = YaUploader(token)
     result = uploader.upload(path_to_file)
     pprint(result)
+    # Задача 3
+    r = get_fike_hw3()
+    pprint(r)
 
 
     
