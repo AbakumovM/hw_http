@@ -15,7 +15,9 @@ class SuperHeroes:
         for i in get_file_list:
             if i['name'] in [hero1, hero2, hero3]:
                 intel_hero[i['name']] = i['powerstats']['intelligence']
-        return f'Самый умный среди Ваших супергероев : {max(intel_hero)}'           
+        for j in intel_hero:
+            if intel_hero[j] == max(intel_hero.values()):
+                return f'Самый умный среди Ваших супергероев : {j}'           
 
 
 class YaUploader:
@@ -60,14 +62,14 @@ if __name__ == '__main__':
     r = super_man.intelligence_heroes(result, 'Hulk', 'Captain America', 'Thanos')
     print(r)
     #Задача 2
-    path_to_file = input('Введите полный путь до файла, который хотите загрузить на диск: ')
-    token = input('Введите Ваш TOKEN: ')
-    uploader = YaUploader(token)
-    result = uploader.upload(path_to_file)
-    pprint(result)
-    # Задача 3
-    r = get_fike_hw3()
-    pprint(r)
+    # path_to_file = input('Введите полный путь до файла, который хотите загрузить на диск: ')
+    # token = input('Введите Ваш TOKEN: ')
+    # uploader = YaUploader(token)
+    # result = uploader.upload(path_to_file)
+    # pprint(result)
+    # # Задача 3
+    # r = get_fike_hw3()
+    # pprint(r)
 
 
     
